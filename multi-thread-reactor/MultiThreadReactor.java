@@ -152,12 +152,11 @@ class AsyncTask implements Runnable {
     @Override
     public void run() {
         handler.run();
-        System.out.println(this.selectionKey.selector().keys().contains(this.selectionKey));
         if(this.selectionKey.isValid()){
             this.selectionKey.interestOps(ops);
-        }
 
-        // Need wakeup the selector after change the interest operations.
-        this.selectionKey.selector().wakeup();
+            // Need wakeup the selector after change the interest operations.
+            this.selectionKey.selector().wakeup();
+        }
     }
 }
